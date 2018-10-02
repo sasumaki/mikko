@@ -6,9 +6,8 @@ const program = require('commander'),
 
 
 const updateProduction = (container, options) => {
-  console.log(container)
   let cmd = ''
-  if (options.iso) cmd += 'nohup ' 
+  if (options.iso) cmd += 'nohup docker exec ' 
   if (options.production) cmd += container
   cmd += ' bash -c "npm run update_database file=/data/all_student_numbers.txt"'
   if (options.iso) cmd += ' &'
