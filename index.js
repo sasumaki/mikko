@@ -23,7 +23,7 @@ const opendb = (container) =>  exec(`docker exec -it -u postgres ${container} ps
 
 
 program
-  .version('0.0.1')
+  .version('0.0.666')
   .command('update [container]')
   .description('run database updater')
   .option('-i', '--iso', 'flag to run in nohup')
