@@ -2,8 +2,9 @@
 'use strict'
 
 const version = require('./package.json').version
-const program = require('commander'),
-  exec = require('child_process').exec;
+const program = require('commander')
+const exec = require('child_process').exec
+const spawn = require('child_process').spawn
 
 let execCallback = (error, stdout, stderr) => {
   if (error) console.log("exec error: " + error);
@@ -20,7 +21,7 @@ const updateProduction = (container, options) => {
 
   exec(cmd, execCallback);
 }
-const opendb = (container) =>  exec(`docker exec -it -u postgres ${container} psql -d tkt_oodi`, execCallback)
+const opendb = (container) =>  spawn('docker', ['exec', '-it', '-u', 'postgres', container, 'psql', '-d', 'tkt_oodi'], { stdio: 'inherit' })
 
 
 program
