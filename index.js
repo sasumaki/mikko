@@ -21,10 +21,13 @@ const opendb = (container) => {
   switch (container) {
     case 'prod':
       spawn('docker', ['exec', '-it', '-u', 'postgres', 'db', 'psql', '-d', 'tkt_oodi'], { stdio: 'inherit' })
+      break
     case 'staging':
       spawn('docker', ['exec', '-it', '-u', 'postgres', 'db_staging', 'psql', '-d', 'tkt_oodi_staging'], { stdio: 'inherit' })
+      break
     case 'testing':
       spawn('docker', ['exec', '-it', '-u', 'postgres', 'db_testing', 'psql', '-d', 'tkt_oodi_testing'], { stdio: 'inherit' })
+      break
     default:
       spawn('docker', ['exec', '-it', '-u', 'postgres', 'oodi_db', 'psql', '-d', 'tkt_oodi'], { stdio: 'inherit' })
   }
