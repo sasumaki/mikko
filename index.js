@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 'use strict'
 
+const version = require('./package.json').version
 const program = require('commander'),
   exec = require('child_process').exec;
 
@@ -23,11 +24,13 @@ const opendb = (container) =>  exec(`docker exec -it -u postgres ${container} ps
 
 
 program
-  .version('0.0.666')
+  .version(version)
   .command('update [container]')
   .description('run database updater')
   .option('-i', '--iso', 'flag to run in nohup')
   .action(updateProduction)
+
+program
   .command('db [container]')
   .description(' open database psql in containers')
   .action(opendb)
